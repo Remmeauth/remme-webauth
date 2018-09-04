@@ -25,7 +25,7 @@ Open repository with frontend and build the app for production to the build fold
   npm install
   npm build
 
- Install backend dependencies and run it. ::
+Install backend dependencies and run it. ::
 
   cd remme-block-explorer-backend
   npm install
