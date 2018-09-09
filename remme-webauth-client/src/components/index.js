@@ -10,6 +10,7 @@ import Banner from './Banner';
 import Footer from './Footer';
 import Social from './Social';
 import TryBlock from './TryBlock';
+import Welcome from './Welcome';
 
 export {
   NavBar,
@@ -24,4 +25,5 @@ export {
   Footer,
   Social,
   TryBlock,
+  Welcome
 };
