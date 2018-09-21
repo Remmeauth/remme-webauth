@@ -18,6 +18,19 @@ class NavBar extends Component {
       <Menu.Item key="2"><span onClick={() => this.props.logout()}>Logout</span></Menu.Item>
     </Menu>
   );
+  products = (
+    <Menu>
+      <Menu.Item key="1"><Link to="https://remme.io/platform-overview" target="_blank">Platform Overview</Link></Menu.Item>
+      <Menu.Item key="2"><Link to="https://remme.io/remchain" target="_blank">REMChain</Link></Menu.Item>
+    </Menu>
+  );
+  resources = (
+    <Menu>
+      <Menu.Item key="1"><Link to="https://medium.com/remme/" target="_blank">Blog</Link></Menu.Item>
+      <Menu.Item key="2"><Link to="https://support.remme.io/" target="_blank">Knowledge Base</Link></Menu.Item>
+      <Menu.Item key="3"><Link to="https://docs.remme.io/" target="_blank">Developers Documentation</Link></Menu.Item>
+    </Menu>
+  );
 
   guestLink = (
     <Fragment>
@@ -42,11 +55,26 @@ class NavBar extends Component {
 
     return (
       <div className="nav">
-        <div className="nav__holder holder">
+        <div className="nav__holder">
           <Link to="/" className="nav__logo">
             <Logo />
           </Link>
           <ul className={cn("nav__items", { "in_center": isLoggedIn })}>
+              <li>
+                  <Dropdown overlay={this.products} trigger={['hover']}>
+                      <span className="name">Products <Icon type="down" /></span>
+                  </Dropdown>
+              </li>
+              <li><Link className="link" to="https://remme.io/use-cases" target="_blank">Use Cases</Link></li>
+              <li><Link className="link" to="https://remme.io/about-us" target="_blank">About us</Link></li>
+              <li><Link className="link" to="https://remme.io/community">Community</Link></li>
+              <li>
+                  <Dropdown overlay={this.resources} trigger={['hover']}>
+                      <span className="name">Resources <Icon type="down" /></span>
+                  </Dropdown>
+              </li>
+              <li><Link className="link" to="https://remme.io/contact-us" target="_blank">Contact us</Link></li>
+              <li><Link className="button-blue" to="https://remme.io/pilot-program" target="_blank">+ Join pilot program</Link></li>
             {isLoggedIn ? this.userLink(name) : this.guestLink}
           </ul>
         </div>

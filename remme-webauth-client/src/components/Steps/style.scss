@@ -6,3 +6,11 @@
 .step {
   margin-top: 40px;
 }
+
+.field-passphrase:before {
+  content: "If you're using Mac OS a passphrase is *required:";
+  margin: 0 auto;
+  padding-bottom: 10px;
+  color: #2990ff;
+  padding-left: 25px;
+}

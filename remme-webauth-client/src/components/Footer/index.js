@@ -1,13 +1,20 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
 import { Logo, Social } from "../index";
 import "./style.scss";
 
-const links = [
-  {
-    link: "https://t.me/remme",
-    image: "https://uploads-ssl.webflow.com/59936b7137d7050001f9b748/5a17154bcc80bd0001ed9e58_telegram_white.svg",
-  },
+const news = [
+    {
+        link: "https://medium.com/remme",
+        image: "https://uploads-ssl.webflow.com/59936b7137d7050001f9b748/5a1718c0f4308f0001d50991_medium_white.svg",
+    },
+    {
+        link: "https://steemit.com/@remme",
+        image: "https://uploads-ssl.webflow.com/59936b7137d7050001f9b748/5a171835ca1ffe0001610868_steemit_white.svg",
+    }
+];
+const follow_remme = [
   {
     link: "https://www.reddit.com/r/remme/",
     image: "https://uploads-ssl.webflow.com/59936b7137d7050001f9b748/5a171835b1b09d0001925ca8_reddit_white.svg",
@@ -21,16 +28,8 @@ const links = [
     image: "https://uploads-ssl.webflow.com/59936b7137d7050001f9b748/5a17183745a0eb000185e0ac_twitter_white.svg",
   },
   {
-    link: "https://medium.com/remme",
-    image: "https://uploads-ssl.webflow.com/59936b7137d7050001f9b748/5a1718c0f4308f0001d50991_medium_white.svg",
-  },
-  {
     link: "https://www.youtube.com/channel/UCeSQ8UosUXwII-6JOh7Fi3g",
     image: "https://uploads-ssl.webflow.com/59936b7137d7050001f9b748/5a1718376b2f3a0001d3bfaa_youtube_white.svg",
-  },
-  {
-    link: "https://steemit.com/@remme",
-    image: "https://uploads-ssl.webflow.com/59936b7137d7050001f9b748/5a171835ca1ffe0001610868_steemit_white.svg",
   },
   {
     link: "https://github.com/Remmeauth",
@@ -40,7 +39,36 @@ const links = [
 
 export default () => (
   <div className="footer-section">
-    <div className="holder footer-layout">
+    <div className="contact-section">
+      <div className="holder contact-section-wrapper">
+          <h2>Join our friendly community!</h2>
+          <div className="prefooter-blocks-wrapper f-m-top">
+              <div className="prefooter-left">
+                  <h6 className="f-m-top">News and updates</h6>
+                  <div className="social-media-2">
+                      {news.map(item => (
+                          <Social image={item.image} link={item.link} />
+                      ))}
+                      <Link className="telegram-btn" to="https://t.me/remme_daily">News Channel</Link>
+                  </div>
+              </div>
+              <div className="prefooter-right">
+                  <h6>contact us</h6>
+                  <div className="contact-info-wrapper">
+                      <Link className="telegram-btn" to="https://t.me/remme">Ask in Telegram</Link>
+                      <Link to="mailto:team@remme.io?subject=Hello%20REMME%20team">team@remme.io</Link>
+                  </div>
+                  <h6 className="f-m-top">follow remme</h6>
+                  <div className="social-media-2">
+                      {follow_remme.map(item => (
+                          <Social image={item.image} link={item.link} />
+                      ))}
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div className="footer-layout">
       <div className="left-footer">
         <div className="logo footer-logo">
           <Logo/>
@@ -49,11 +77,7 @@ export default () => (
           © 2016-{new Date().getFullYear()} REMME CAPITAL LTD. All rights reserved.
         </div>
       </div>
-      <div className="social-media-2">
-        {links.map(item => (
-          <Social image={item.image} link={item.link} />
-        ))}
-      </div>
+        <Link className="no-warp left-footer-link" to="https://remme.io/privacy-notice" target="_blank">Privacy Notice</Link>
     </div>
   </div>
 )
