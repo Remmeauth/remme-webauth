@@ -11,6 +11,7 @@ import Footer from './Footer';
 import Social from './Social';
 import TryBlock from './TryBlock';
 import Welcome from './Welcome';
+import SmartLink from "./SmartLink";
 
 export {
   NavBar,
@@ -25,5 +26,6 @@ export {
   Footer,
   Social,
   TryBlock,
-  Welcome
+  Welcome,
+  SmartLink
 };

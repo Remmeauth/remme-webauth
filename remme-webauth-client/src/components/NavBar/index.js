@@ -3,82 +3,182 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import cn from "classnames";
-import { Avatar, Dropdown, Icon, Menu, message } from 'antd';
+import { Avatar, Dropdown, Icon, Menu, Button } from 'antd';
 
 import "./style.scss";
 import { logout } from "../../actions";
 import { Logo } from "../index";
+import { SmartLink } from "../../components";
 
 //----------------------------------------------------------------------------------------------------------------------
 
+const NavigationItems = [
+    {
+        title: 'Products',
+        type: 'list',
+        key: 1,
+        items: [{
+            title: 'Platform Overview',
+            link: "https://remme.webflow.io/platform-overview",
+            key: 1
+        },{
+            title: 'REMChain',
+            link: "https://remme.io/remchain",
+            key: 2
+        }]
+    },{
+        title: 'Use Cases',
+        link: 'https://remme.io/use-cases',
+        key: 2,
+    },{
+        title: 'About us',
+        link: 'https://remme.io/about-us',
+        key: 3,
+    },{
+        title: 'Community',
+        link: "https://remme.io/community",
+        key: 4
+    },{
+        title: 'Resources',
+        type: 'list',
+        key: 5,
+        items: [{
+            title: 'Blog',
+            link: "https://medium.com/remme",
+            key: 1
+        },{
+            title: 'Knowledge Base',
+            link: "https://support.remme.io/",
+            key: 2
+        },{
+            title: 'Developers Documentation',
+            link: "https://docs.remme.io/",
+            key: 3
+        }]
+    },{
+        title: 'Contact us',
+        link: "https://remme.io/contact-us",
+        key: 6
+    },{
+        title: '+ Join pilot program',
+        link: 'https://remme.io/pilot-program',
+        type: 'button',
+        key: 7,
+    },{
+        title: 'Register',
+        link: '/register',
+        key: 8,
+        isLoggedIn: false
+    },{
+        title: 'Login',
+        link: '/login',
+        key: 9,
+        isLoggedIn: false
+    },{
+        type: 'avatar',
+        key: 10,
+        isLoggedIn: true,
+        items:[{
+            title: 'Revoke',
+            link: '/revoke',
+            key: 1
+        },{
+            title: 'Logout',
+            type:'logout',
+            key: 2
+        }]
+    },
+];
+
 class NavBar extends Component {
-  menu = (
-    <Menu>
-      <Menu.Item key="1"><Link to="/revoke">Revoke</Link></Menu.Item>
-      <Menu.Item key="2"><span onClick={() => this.props.logout()}>Logout</span></Menu.Item>
-    </Menu>
-  );
-  products = (
-    <Menu>
-      <Menu.Item key="1"><Link to="https://remme.io/platform-overview" target="_blank">Platform Overview</Link></Menu.Item>
-      <Menu.Item key="2"><Link to="https://remme.io/remchain" target="_blank">REMChain</Link></Menu.Item>
-    </Menu>
-  );
-  resources = (
-    <Menu>
-      <Menu.Item key="1"><Link to="https://medium.com/remme/" target="_blank">Blog</Link></Menu.Item>
-      <Menu.Item key="2"><Link to="https://support.remme.io/" target="_blank">Knowledge Base</Link></Menu.Item>
-      <Menu.Item key="3"><Link to="https://docs.remme.io/" target="_blank">Developers Documentation</Link></Menu.Item>
-    </Menu>
-  );
-
-  guestLink = (
-    <Fragment>
-      <li><Link className="link" to="/register">Register</Link></li>
-      <li><Link className="link" to="/login">Login</Link></li>
-    </Fragment>
-  );
-
-  userLink = name => (
-    <Fragment>
-      <li className="avatar"><Avatar icon="user" /></li>
-      <li>
-        <Dropdown overlay={this.menu} trigger={['click']}>
-          <span className="name">{name}<Icon type="down" /></span>
-        </Dropdown>
-      </li>
-    </Fragment>
-  );
-
   render() {
     const { isLoggedIn, name } = this.props;
-
+    console.log(isLoggedIn);
     return (
-      <div className="nav">
-        <div className="nav__holder">
-          <Link to="/" className="nav__logo">
-            <Logo />
-          </Link>
-          <ul className={cn("nav__items", { "in_center": isLoggedIn })}>
-              <li>
-                  <Dropdown overlay={this.products} trigger={['hover']}>
-                      <span className="name">Products <Icon type="down" /></span>
-                  </Dropdown>
-              </li>
-              <li><Link className="link" to="https://remme.io/use-cases" target="_blank">Use Cases</Link></li>
-              <li><Link className="link" to="https://remme.io/about-us" target="_blank">About us</Link></li>
-              <li><Link className="link" to="https://remme.io/community">Community</Link></li>
-              <li>
-                  <Dropdown overlay={this.resources} trigger={['hover']}>
-                      <span className="name">Resources <Icon type="down" /></span>
-                  </Dropdown>
-              </li>
-              <li><Link className="link" to="https://remme.io/contact-us" target="_blank">Contact us</Link></li>
-              <li><Link className="button-blue" to="https://remme.io/pilot-program" target="_blank">+ Join pilot program</Link></li>
-            {isLoggedIn ? this.userLink(name) : this.guestLink}
-          </ul>
+        <div className="nav">
+            <div className="nav__holder">
+                <Link to="/" className="nav__logo">
+                    <Logo />
+                </Link>
+                <ul className={cn("nav__items", { "in_center": isLoggedIn })}>
+                    { NavigationItems.map( item =>
+                        item.isLoggedIn === isLoggedIn || item.isLoggedIn === undefined  ?
+                            !item.items ?
+                                item.type === 'button' ?
+                                    <li>
+                                        <Link
+                                            className="button-blue"
+                                            to={item.link}
+                                            target="_blank"
+                                        >
+                                            {item.title}
+                                        </Link>
+                                    </li>
+                                    :
+                                    <li>
+                                        <SmartLink
+                                            link={item.link} >
+                                            {item.title}
+                                        </SmartLink>
+                                    </li>
+                                :
+                                item.type === 'avatar' && item.isLoggedIn === isLoggedIn ?
+                                    <Fragment>
+                                        <li className="avatar"><Avatar icon="user" /></li>
+                                        <li>
+                                            <Dropdown
+                                                overlay={
+                                                <Menu>
+                                                    {item.items.map( subitem =>
+                                                        subitem.type === 'logout' ?
+                                                            <Menu.Item key={subitem.key}><span onClick={() => this.props.logout()}>{subitem.title}</span></Menu.Item>
+                                                            :
+                                                            <Menu.Item key={subitem.key}>
+                                                                <SmartLink
+                                                                    link={subitem.link} >
+                                                                    {subitem.title}
+                                                                </SmartLink>
+                                                            </Menu.Item>
+                                                    )}
+                                                </Menu>
+                                            }
+                                                trigger={['hover']}>
+                                                <span className="name">{name}<Icon type="down" /></span>
+                                            </Dropdown>
+                                        </li>
+                                    </Fragment>
+                                    :
+                                    <li>
+                                        <Dropdown
+                                            key={item.key}
+                                            overlay={
+                                                <Menu>
+                                                    {item.items.map( subitem =>
+                                                        <Menu.Item key={subitem.key}>
+                                                            <SmartLink
+                                                                link={subitem.link} >
+                                                                {subitem.title}
+                                                            </SmartLink>
+                                                        </Menu.Item>
+                                                    )}
+                                                </Menu>
+                                            }>
+                                            {
+                                                item.type === 'button' ?
+                                                    <Button type={item.style}>
+                                                        {item.title}
+                                                    </Button>
+                                                    :
+                                                    <span className="name">{item.title} <Icon type="down" /></span>
+                                            }
+                                        </Dropdown>
+                                    </li>
+                                :
+                                null
+                    )}
+                </ul>
+            </div>
         </div>
-      </div>
     )
   }
 }
