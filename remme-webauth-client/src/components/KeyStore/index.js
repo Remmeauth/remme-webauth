@@ -27,13 +27,17 @@ class KeyStore extends Component {
 
   render(){
       return (
-        <Upload
-          customRequest={this.fileReader}
-        >
-            <Button>
-                <Icon type="upload" /> Upload your REMChain keystore file
-            </Button>
-        </Upload>
+          <div>
+              <Upload
+                customRequest={this.fileReader}
+              >
+                  <Button>
+                   <Icon type="upload" /> Upload your REMChain keystore file
+                  </Button>
+              </Upload>
+              <br/>
+              <p>If you don't have a keystore file you can generate it <a target="_blank" href="https://blockexplorer.remme.io/claim">here</a>.</p>
+          </div>
       )
   }
 }
