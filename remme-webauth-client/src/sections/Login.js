@@ -15,7 +15,7 @@ class Login extends Component {
     const query = window.location.href.split('?');
     if (query.length >= 2){
       isOk = query[1].split("&")[0].split('=')[1] === "true";
-      name = query[1].split("&")[1].split('=')[1];
+      name = decodeURIComponent(query[1].split("&")[1].split('=')[1]);
       userId = query[1].split("&")[2].split('=')[1];
       ga = query[1].split("&")[3].split('=')[1] === "true";
     }

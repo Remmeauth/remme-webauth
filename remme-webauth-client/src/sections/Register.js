@@ -62,7 +62,7 @@ class Register extends Component {
       }
 
       const certificateTransactionResult = await remme.certificate.createAndStore({
-        commonName: firstName,
+        commonName: firstName + ' ' + lastName,
         email: email,
         name: firstName,
         surname: lastName,
