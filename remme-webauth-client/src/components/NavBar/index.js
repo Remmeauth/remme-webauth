@@ -93,7 +93,6 @@ const NavigationItems = [
 class NavBar extends Component {
   render() {
     const { isLoggedIn, name } = this.props;
-    console.log(isLoggedIn);
     return (
         <div className="nav">
             <div className="nav__holder">
