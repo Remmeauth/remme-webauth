@@ -30,6 +30,18 @@ body {
   position: relative;
 }
 
+.code-block {
+  background: #f5f5f5;
+  margin-bottom: 15px;
+  .ant-card-body {
+    padding: 14px 24px;
+  }
+  p {
+    margin: 0;
+  }
+}
+
+
 .tac {
   text-align: center;
 }

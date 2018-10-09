@@ -12,6 +12,7 @@ import Social from './Social';
 import TryBlock from './TryBlock';
 import Welcome from './Welcome';
 import SmartLink from "./SmartLink";
+import InfoLink from "./InfoLink";
 
 export {
   NavBar,
@@ -27,5 +28,6 @@ export {
   Social,
   TryBlock,
   Welcome,
-  SmartLink
+  SmartLink,
+  InfoLink
 };

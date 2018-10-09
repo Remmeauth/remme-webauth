@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 
-import { NavBar, Footer } from './components';
+import { NavBar, Footer, InfoLink } from './components';
 
 class App extends Component {
   render() {
+    const { location } = this.props
     return (
       <div className="App">
+        { location.pathname !== "/how-to-use" ? <InfoLink /> : null }
         <NavBar />
         {this.props.children}
         <Footer />
@@ -14,4 +17,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
