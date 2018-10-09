@@ -16,7 +16,7 @@ export const google2FAUrl = `/api/2fa`;
 export const secret = 'thnjiugc';
 
 export const networkConfig = {
-  nodeAddress: "localhost",
+  nodeAddress: "webauth-testnet.remme.io",
   nodePort: 443,
   sslMode: true,
 };
