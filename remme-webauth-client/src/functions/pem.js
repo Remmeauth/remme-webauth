@@ -1,4 +1,4 @@
-import {asn1, pkcs12, pki, rsa, util} from "node-forge";
+import {asn1, pkcs12, util} from "node-forge";
 
 export const createP12 = ({ privateKey, certificate, passphrase }) => {
   const newPkcs12Asn1 = pkcs12.toPkcs12Asn1(

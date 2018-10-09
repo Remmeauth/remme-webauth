@@ -8,6 +8,7 @@ export default ({ link, image, svg }) => (
       <img
         src={image}
         className="sm-icon-new"
+        alt="icon"
       />
     )}
   </a>

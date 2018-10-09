@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { host, google2FAUrl, registerUrl, certificateUrl, homeUrl } from "./index";
+import { google2FAUrl, registerUrl, certificateUrl, homeUrl } from "./index";
 
 
 const serverRequest = config => async ({ data = false, params = false } = { data: false, params: false }) => {

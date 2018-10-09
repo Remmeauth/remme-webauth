@@ -20,7 +20,7 @@ export default ({ name }) => (
       </div>
       <div className="professor-image">
         <img src="https://uploads-ssl.webflow.com/5b17b889f5c16285d8014a1f/5b17b889f5c1625470014a3b_prof.svg"
-             className="feature-section-image feature-hero-page professor-hero" width="485"
+             className="feature-section-image feature-hero-page professor-hero" width="485" alt="professor"
         />
       </div>
     </div>

@@ -1,9 +1,9 @@
 import { LOGIN, LOGOUT } from '../types';
 
 const initialState = {
-  isLoggedIn: false,
-  userId: "",
-  name: "",
+  isLoggedIn: true,
+  userId: "123",
+  name: "Vova",
 };
 
 const handleLogin = (state, { userId, name }) => ({

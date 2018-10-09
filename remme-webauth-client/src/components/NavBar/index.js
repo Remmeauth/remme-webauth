@@ -90,94 +90,97 @@ const NavigationItems = [
     },
 ];
 
+const MenuItem = (props) => {
+  const { link, title, type } = props.item;
+  return (
+    <li>
+      { type === 'button' ?
+          <Link className="button-blue" to={link} target="_blank">
+              {title}
+          </Link>
+          :
+          <SmartLink link={link} >
+              {title}
+          </SmartLink> }
+    </li>
+  );
+}
+
+const MenuDropDownItem = (props) => {
+  const { item, isLoggedIn, name } = props;
+  return (
+    <Fragment>
+      { item.type === 'avatar' && item.isLoggedIn === isLoggedIn ?
+        <li className="avatar">
+          <Avatar icon="user" />
+        </li>
+        :
+        null
+      }
+      <li>
+        <Dropdown
+          trigger={['hover']}
+          key={item.key}
+          overlay={
+            <Menu>
+              {item.items.map( subitem =>
+                subitem.type === 'logout' ?
+                  <Menu.Item key={subitem.key}>
+                    <span onClick={() => props.logout()}>
+                      {subitem.title}
+                    </span>
+                  </Menu.Item>
+                  :
+                  <Menu.Item key={subitem.key}>
+                      <SmartLink
+                          link={subitem.link} >
+                          {subitem.title}
+                      </SmartLink>
+                  </Menu.Item>
+              )}
+            </Menu>
+          }>
+          {
+            item.type === 'button' ?
+              <Button type={item.style}>
+                  {item.title}
+              </Button>
+              :
+              <span className="name">{ item.type === 'avatar' && item.isLoggedIn === isLoggedIn ? name : item.title } <Icon type="down" /></span>
+          }
+        </Dropdown>
+    </li>
+  </Fragment>
+);
+}
+
 class NavBar extends Component {
   render() {
-    const { isLoggedIn, name } = this.props;
+    const { isLoggedIn, name, logout } = this.props;
     return (
-        <div className="nav">
-            <div className="nav__holder">
-                <Link to="/" className="nav__logo">
-                    <Logo />
-                </Link>
-                <ul className={cn("nav__items", { "in_center": isLoggedIn })}>
-                    { NavigationItems.map( item =>
-                        item.isLoggedIn === isLoggedIn || item.isLoggedIn === undefined  ?
-                            !item.items ?
-                                item.type === 'button' ?
-                                    <li>
-                                        <Link
-                                            className="button-blue"
-                                            to={item.link}
-                                            target="_blank"
-                                        >
-                                            {item.title}
-                                        </Link>
-                                    </li>
-                                    :
-                                    <li>
-                                        <SmartLink
-                                            link={item.link} >
-                                            {item.title}
-                                        </SmartLink>
-                                    </li>
-                                :
-                                item.type === 'avatar' && item.isLoggedIn === isLoggedIn ?
-                                    <Fragment>
-                                        <li className="avatar"><Avatar icon="user" /></li>
-                                        <li>
-                                            <Dropdown
-                                                overlay={
-                                                <Menu>
-                                                    {item.items.map( subitem =>
-                                                        subitem.type === 'logout' ?
-                                                            <Menu.Item key={subitem.key}><span onClick={() => this.props.logout()}>{subitem.title}</span></Menu.Item>
-                                                            :
-                                                            <Menu.Item key={subitem.key}>
-                                                                <SmartLink
-                                                                    link={subitem.link} >
-                                                                    {subitem.title}
-                                                                </SmartLink>
-                                                            </Menu.Item>
-                                                    )}
-                                                </Menu>
-                                            }
-                                                trigger={['hover']}>
-                                                <span className="name">{name}<Icon type="down" /></span>
-                                            </Dropdown>
-                                        </li>
-                                    </Fragment>
-                                    :
-                                    <li>
-                                        <Dropdown
-                                            key={item.key}
-                                            overlay={
-                                                <Menu>
-                                                    {item.items.map( subitem =>
-                                                        <Menu.Item key={subitem.key}>
-                                                            <SmartLink
-                                                                link={subitem.link} >
-                                                                {subitem.title}
-                                                            </SmartLink>
-                                                        </Menu.Item>
-                                                    )}
-                                                </Menu>
-                                            }>
-                                            {
-                                                item.type === 'button' ?
-                                                    <Button type={item.style}>
-                                                        {item.title}
-                                                    </Button>
-                                                    :
-                                                    <span className="name">{item.title} <Icon type="down" /></span>
-                                            }
-                                        </Dropdown>
-                                    </li>
-                                :
-                                null
-                    )}
-                </ul>
-            </div>
+      <div className="nav">
+        <div className="nav__holder">
+          <Link to="/" className="nav__logo">
+              <Logo />
+          </Link>
+          <ul className={cn("nav__items", { "in_center": isLoggedIn })}>
+            { NavigationItems.map( item =>
+              item.isLoggedIn === isLoggedIn || item.isLoggedIn === undefined  ?
+                !item.items ?
+                  <MenuItem item={item}/>
+                  :
+                  <MenuDropDownItem
+                    item={item}
+                    isLoggedIn={isLoggedIn}
+                    logout={logout}
+                    name={name}
+                  />
+              :
+              null
+            )}
+          </ul>
         </div>
+      </div>
     )
   }
 }

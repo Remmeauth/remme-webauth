@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import jwt from "jsonwebtoken";
 
-import { login, setGoogleAuth } from "../../actions";
+import { login } from "../../actions";
 import api from "../../config/api";
 import { secret } from "../../config";
 

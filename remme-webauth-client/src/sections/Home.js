@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import { Banner, TryBlock, Footer, Welcome } from '../components';
+import { Welcome } from '../components';
 
 const Home = ({ isLoggedIn, name }) => (
   <Fragment>

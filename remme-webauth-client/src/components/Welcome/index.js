@@ -21,7 +21,7 @@ const links = [
 
 export default ({ name }) => (
   <div className="welcome-section">
-    <img src={congrats} />
+    <img src={congrats} alt="welcome"/>
     <h1 className="h1" style={{color: "#464852"}}>Hi {name}</h1>
     <p style={{color: "#464852", fontSize: 18}}>You are successfully logged-in!<br/>Thank you for trying REMME WebAuth Demo.</p>
     <Row className="welcome-rows">

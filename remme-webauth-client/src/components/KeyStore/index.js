@@ -36,7 +36,7 @@ class KeyStore extends Component {
                   </Button>
               </Upload>
               <br/>
-              <p>If you don't have a keystore file you can generate it <a target="_blank" href="https://blockexplorer.remme.io/claim">here</a>.</p>
+              <p>If you don't have a keystore file you can generate it <a target="_blank" rel="noopener noreferrer" href="https://blockexplorer.remme.io/claim">here</a>.</p>
           </div>
       )
   }
