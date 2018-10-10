@@ -27,7 +27,7 @@ Open repository with frontend and build the app for production to the build fold
 
   cd remme-webauth-client
   npm install
-  npm build
+  npm run build
 
 Install backend dependencies and run it. ::
 
