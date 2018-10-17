@@ -13,6 +13,7 @@ import TryBlock from './TryBlock';
 import Welcome from './Welcome';
 import SmartLink from "./SmartLink";
 import InfoLink from "./InfoLink";
+import NavigationItem from "./NavigationItem";
 
 export {
   NavBar,
@@ -29,5 +30,6 @@ export {
   TryBlock,
   Welcome,
   SmartLink,
-  InfoLink
+  InfoLink,
+  NavigationItem
 };

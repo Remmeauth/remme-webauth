@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 class SmartLink extends Component {
     render() {
-        const { link, children } = this.props;
+        const { link, children, linkClass } = this.props;
         return (
-            <Link className = "link" target={ link.substring(0, 4) === 'http' ? '_blank' : null } to={link}>{children}</Link>
+            <Link className = { linkClass || "link" } target={ link.substring(0, 4) === 'http' ? '_blank' : null } to={link}>{children}</Link>
         )
     }
 }

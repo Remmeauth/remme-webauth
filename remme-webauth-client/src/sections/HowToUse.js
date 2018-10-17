@@ -17,7 +17,7 @@ import login2 from '../images/remme-login-2.png';
 import success from '../images/remme-login-success.png';
 import revoke from '../images/remme-revoke-button.png';
 
-const NotFound = props => (
+const HowToUse = props => (
   <Fragment>
     <div className="section">
       <div style={{ maxWidth: 900, margin: "0 auto", padding: "0 20px"  }}>
@@ -104,4 +104,4 @@ const NotFound = props => (
   </Fragment>
 );
 
-export default NotFound;
+export default HowToUse;
