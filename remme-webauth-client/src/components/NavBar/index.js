@@ -46,6 +46,9 @@ const NavigationItems = [
         title: 'Contact us',
         link: "https://remme.io/contact-us",
     },{
+        title: 'How to use',
+        link: "/how-to-use",
+    },{
         title: '+ Join pilot program',
         link: 'https://remme.io/pilot-program',
         type: 'button'
