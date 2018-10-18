@@ -11,7 +11,7 @@ import { NavigationItem } from "../../components";
 
 //----------------------------------------------------------------------------------------------------------------------
 
-const NavigationItems = [
+var NavigationItems = [
     {
         title: 'Products',
         items: [{
@@ -51,7 +51,8 @@ const NavigationItems = [
     },{
         title: '+ Join pilot program',
         link: 'https://remme.io/pilot-program',
-        type: 'button'
+        type: 'button',
+        class: 'button-blue'
     },{
         title: 'Register',
         link: '/register',
@@ -63,13 +64,13 @@ const NavigationItems = [
     },{
         title: false,
         type: 'avatar',
+        icon: 'user',
         isLoggedIn: true,
         items:[{
             title: 'Revoke',
             link: '/revoke',
         },{
-            title: 'Logout',
-            type:'logout',
+            title: 'Logout'
         }]
     },
 ];
@@ -84,13 +85,15 @@ class NavBar extends Component {
               <Logo />
           </Link>
           <ul className={cn("nav__items", { "in_center": isLoggedIn })}>
-            { NavigationItems.map( item =>
-              <NavigationItem
-                item={item}
-                isLoggedIn={isLoggedIn}
-                logout={logout}
-                name={name}
-              />
+            { NavigationItems.map( item => {
+                if (item.type === "avatar") {
+                  item.title = name;
+                  item.items[1].action = logout
+                }
+                if (item.isLoggedIn === isLoggedIn || item.isLoggedIn === undefined) {
+                  return <NavigationItem item={item} />
+                }
+              }
             )}
           </ul>
         </div>
