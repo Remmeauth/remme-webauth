@@ -92,6 +92,8 @@ class NavBar extends Component {
                 }
                 if (item.isLoggedIn === isLoggedIn || item.isLoggedIn === undefined) {
                   return <NavigationItem item={item} />
+                } else {
+                  return false
                 }
               }
             )}
