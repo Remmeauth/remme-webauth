@@ -9,7 +9,7 @@ services:
     volumes:
      - ./nginx.conf:/etc/nginx/nginx.conf:ro
      - ./certificates:/etc/nginx/certificates:ro
-     - ./cert-generate-client/build:/root/build
+     - ./remme-webauth-client/build:/root/build
     ports:
      - 80:80
 

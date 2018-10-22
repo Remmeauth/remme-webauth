@@ -20,4 +20,4 @@ RUN npm run build
 
 COPY ./remme-webauth-server/.env ./.env
 
-CMD ["node", "src/index.js"]
+CMD ["node", "dist/index.js"]
