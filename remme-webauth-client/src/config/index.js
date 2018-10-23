@@ -9,9 +9,6 @@ export const certificateUrl = '/api/certificate';
 export const registerUrl = '/api/register';
 export const google2FAUrl = `/api/2fa`;
 
-// export const nodeAddress = "178.62.214.39:8080";
-// export const socketAddress = "178.62.214.39:9080";
-
 // for token
 export const secret = 'thnjiugc';
 

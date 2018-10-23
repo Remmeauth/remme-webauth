@@ -12,6 +12,8 @@ services:
      - ./remme-webauth-client/build:/root/build
     ports:
      - 80:80
+     - 443:443
+     - 444:444
 
   server:
     build: .
