@@ -10,11 +10,8 @@ Setup
 
 Requirements
 -----------------
-* Nginx >= 1.13.5
-* Nodejs >= 8.0.0
-* MongoDB >= 4.0.2
-* redis-server
-* build-essential
+* docker >= 17.05.0
+* docker-compose >= 1.18.0
 
 Installation
 -----------------
@@ -23,17 +20,12 @@ Clone REMME WebAuth Demo repository into a directory on your server. ::
 
   git clone https://github.com/Remmeauth/remme-webauth-testnet.git
 
-Open repository with frontend and build the app for production to the build folder. ::
+Open the repository and create a certificates folder. ::
 
-  cd remme-webauth-client
-  npm install
-  npm run build
+  cd remme-webauth-testnet
+  mkdir certificates
 
-Install backend dependencies and run it. ::
-
-  cd remme-webauth-backend
-  npm install
-  npm start
+You have to upload the certificate and private key to this folder (certificate.crt, private.key). These files are needed to configure ssl.
 
 Change ngnix.conf using the config file, replace directories path and server domain name.
 
@@ -45,6 +37,6 @@ If you are going to connect demo to your own node you should cnange "NODE_ADDRES
   |   proxy_read_timeout  90;
   | }
 
-Then Restart nginx. ::
+Lastly, run docker-compose up and Compose will start and run app. ::
 
-  systemctl restart ngnix
+  docker-compose up
