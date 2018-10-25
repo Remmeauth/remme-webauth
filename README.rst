@@ -54,3 +54,5 @@ If you are going to connect demo to your own node you should cnange the node add
 and change the node address in /remme-webauth-testnet/remme-webauth-server/.env. ::
 
   NODE_ADDRESS="YOUR_NODE_ADDRESS"
+
+*If your node was installed on localhost you should use the local IP address instead "localhost".
