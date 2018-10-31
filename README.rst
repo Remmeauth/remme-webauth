@@ -30,7 +30,7 @@ Open the repository and create a certificates folder. ::
 You have to upload the certificate and private key to this folder (certificate.crt, private.key). These files are needed to configure ssl.
 
 Change ngnix.conf using the config file, replace directories path and server domain name.
-If you are going to connect demo to your own node you should also cnange the node address:
+If you are going to connect demo to your own node you should also change the node address:
 
   | location /api/v1/ {
   |   proxy_set_header        Host $host;
