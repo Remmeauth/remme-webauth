@@ -13,12 +13,12 @@ This is a [Demo Website](https://webauth-testnet.remme.io/) project for showing 
 Clone REMME WebAuth Demo repository into a directory on your server.
 
 ```sh
-$ git clone https://github.com/Remmeauth/remme-webauth-testnet.git
+$ git clone https://github.com/Remmeauth/remme-webauth.git
 ```
 
 Open the repository and create a certificates folder.
 ```sh
-$ cd remme-webauth-testnet
+$ cd remme-webauth
 $ mkdir certificates
 ```
 You have to upload the certificate and private key to this folder (certificate.crt, private.key). These files are needed to configure ssl.
@@ -39,10 +39,10 @@ const host = 'yourdomain.com'
 Then rebuild client.
 
 ```sh
-$ cd /remme-webauth-testnet/remme-webauth-client
+$ cd /remme-webauth/remme-webauth-client
 $ npm run build
 ```
-Set the node address in /remme-webauth-testnet/remme-webauth-server/.env.
+Set the node address in /remme-webauth/remme-webauth-server/.env.
 ```sh
 NODE_ADDRESS="YOUR_NODE_ADDRESS"
 ```
