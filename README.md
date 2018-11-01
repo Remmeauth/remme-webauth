@@ -44,7 +44,7 @@ $ npm run build
 ```
 Set the node address in /remme-webauth/remme-webauth-server/.env.
 ```sh
-NODE_ADDRESS="YOUR_NODE_ADDRESS"
+NODE_ADDRESS="YOUR_NODE_ADDRESS" 
 ```
 *If your node was installed on localhost you should use the local IP address instead "localhost".
 Lastly, run docker-compose up and Compose will start and run app.
