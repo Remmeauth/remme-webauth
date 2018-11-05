@@ -1,11 +1,10 @@
 import express from 'express';
 import Remme from "remme";
 import { certificateFromPem } from "remme-utils";
-import redis from 'redis';
 import sha256 from "js-sha256";
 
 import { nodeAddress } from "../config";
-import { getCollection, getUserId } from "../functions";
+import { getCollection } from "../functions";
 
 const remme = new Remme.Client({
   networkConfig: {
@@ -13,7 +12,6 @@ const remme = new Remme.Client({
   },
 });
 const router = express.Router();
-const session = redis.createClient();
 
 router.get("/", async (req, res) => {
   const certificate = decodeURIComponent(req.get('X-SSL-Client-Cert'));
@@ -28,11 +26,13 @@ router.get("/", async (req, res) => {
     } catch (e) {
       res.redirect(`${backURL}?isOk=false&name=false&userId=false&ga=false`);
     }
-    const userId = getUserId();
-    session.set(userId, certificate);
     if (isValid) {
+      const session = await getCollection("session");
+      const { insertedId: userId } = await session.insertOne({ certificate: certificate });
+
       const store = await getCollection("certificates");
       const { secret } = await store.findOne({ hashOfCertificate: sha256(certificate.replace(/\r?\n?/g, "")) });
+
       res.redirect(`${backURL}?isOk=true&name=${cert.subject.getField('CN').value}&userId=${userId}&ga=${!!secret}`);
     } else {
       res.redirect(`${backURL}?isOk=false&name=false&userId=false&ga=false`);
@@ -42,9 +42,12 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.delete('/', (req, res) => {
+router.delete('/', async (req, res) => {
   const { userId } = req.body;
-  session.del(userId);
+
+  const session = await getCollection("session");
+  await session.deleteOne({ user: userId });
+
   res.json({ success: true });
 });
 

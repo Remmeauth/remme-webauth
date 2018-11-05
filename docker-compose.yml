@@ -21,7 +21,6 @@ services:
     network_mode: service:nginx
     depends_on:
       - mongodb
-      - redis
       - nginx
 
   mongodb:
@@ -32,12 +31,5 @@ services:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/dev/null
     command: mongod --smallfiles --logpath=/dev/null
-    depends_on:
-      - nginx
-
-  redis:
-    image: redis:alpine
-    network_mode: service:nginx
-    container_name: redis
     depends_on:
       - nginx
