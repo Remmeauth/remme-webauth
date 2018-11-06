@@ -14,9 +14,15 @@ const remme = new Remme.Client({
 const router = express.Router();
 
 router.get("/", async (req, res) => {
+  const backURL = req.header('Referer');
+
+  if (!req.get('X-SSL-Client-Cert')) {
+    res.redirect(`${backURL}?isOk=false&name=false&userId=false&ga=false`);
+    return;
+  }
+
   const certificate = decodeURIComponent(req.get('X-SSL-Client-Cert'));
   const cert = certificateFromPem(certificate);
-  const backURL = req.header('Referer');
 
   if (certificate) {
     let isValid = false;
