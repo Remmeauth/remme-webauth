@@ -51,7 +51,7 @@ class Register extends Component {
         networkConfig,
       });
 
-      const balance = await remme.token.getBalance(remme.account.publicKeyHex);
+      const balance = await remme.token.getBalance(remme.account.address);
 
       if (balance < 10) {
         this.setState({
