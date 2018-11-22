@@ -39,6 +39,7 @@ class Register extends Component {
   };
 
   onRegister = async (values) => {
+
     const { firstName, lastName, email, passphrase = "" } = values;
     const { privateKey: privateKeyHex } = this.props;
 

@@ -1,5 +1,5 @@
 import express from 'express';
-import sha256 from "js-sha256";
+import { sha256 } from 'remme-utils';
 
 import { verifySecret, getCollection } from "../functions";
 

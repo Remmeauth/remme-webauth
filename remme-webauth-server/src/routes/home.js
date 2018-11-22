@@ -1,7 +1,7 @@
 import express from 'express';
 import Remme from "remme";
 import { certificateFromPem } from "remme-utils";
-import sha256 from "js-sha256";
+import { sha256 } from 'remme-utils';
 
 import { nodeAddress } from "../config";
 import { getCollection } from "../functions";
@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
     let isValid = false;
     try {
       const check = await remme.certificate.check(certificate);
-      isValid = check.valid;
+      isValid = check;
     } catch (e) {
       res.redirect(`${backURL}?isOk=false&name=false&userId=false&ga=false`);
     }
