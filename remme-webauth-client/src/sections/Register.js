@@ -39,6 +39,7 @@ class Register extends Component {
   };
 
   onRegister = async (values) => {
+
     const { firstName, lastName, email, passphrase = "" } = values;
     const { privateKey: privateKeyHex } = this.props;
 
@@ -51,7 +52,7 @@ class Register extends Component {
         networkConfig,
       });
 
-      const balance = await remme.token.getBalance(remme.account.publicKeyHex);
+      const balance = await remme.token.getBalance(remme.account.address);
 
       if (balance < 10) {
         this.setState({
