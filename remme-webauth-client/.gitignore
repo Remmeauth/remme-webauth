@@ -21,3 +21,5 @@ yarn-error.log*
 .idea
 
 /src__back
+
+package-lock.json
